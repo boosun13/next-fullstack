@@ -11,3 +11,31 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum BookStatus {
+  UNREAD
+  READING
+  DONE
+}
+
+model Book {
+  id        String        @id @default(cuid())
+  title     String
+  author    String
+  status    BookStatus    @default(UNREAD)
+  rating    Int?
+  memo      String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  logs      ActivityLog[]
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  bookId    String
+  book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  action    String
+  createdAt DateTime @default(now())
+
+  @@index([bookId])
+}
