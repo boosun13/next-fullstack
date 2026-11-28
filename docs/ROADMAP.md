@@ -19,24 +19,24 @@
 ---
 
 ## Step 0：環境準備
-- [ ] mise でこのプロジェクトの Node を固定する（今は設定がないため、システムの v20.8.1 にフォールバックしている）
+- [x] mise でこのプロジェクトの Node を固定する（今は設定がないため、システムの v20.8.1 にフォールバックしている）
   - このフォルダで `mise use node@24` を実行 → `mise.toml` ができる
-- [ ] `node -v` で 24.x になっていることを確認する
-- [ ] Terraform も mise で入れる（`mise use terraform@latest`）→ `terraform -v`
+- [x] `node -v` で 24.x になっていることを確認する
+- [x] Terraform も mise で入れる（`mise use terraform@latest`）→ `terraform -v`
 - [ ] （任意）古い `C:\Program Files\nodejs` はアンインストールしてよい（mise の node と取り違える原因になる）
-- [ ] Git をインストール済みか確認し、GitHub アカウントを用意する
+- [x] Git をインストール済みか確認し、GitHub アカウントを用意する
 - [ ] Vercel アカウントを作り、GitHub と連携する
-- [ ] Neon アカウントを作る（DB は Step 2 で作るので、今はアカウントだけ）
+- [x] Neon アカウントを作る（DB は Step 2 で作るので、今はアカウントだけ）
 
 **チェック**：`node -v` / `npm -v` / `terraform -v` / `git --version` がすべて表示される
 
 ## Step 1：Next.js の雛形を作って構造を理解する
-- [ ] このフォルダで `npx create-next-app@latest .` を実行する
+- [x] このフォルダで `npx create-next-app@latest .` を実行する
   - TypeScript：Yes / ESLint：Yes / App Router：Yes / `src/` ディレクトリ：お好み / Tailwind：お好み
-- [ ] `git init` して最初のコミットをする
-- [ ] `npm run dev` で http://localhost:3000 を開く
-- [ ] `app/page.tsx` を書き換えて、画面に反映されることを確認する
-- [ ] `app/about/page.tsx` を自分で作り、`/about` が表示されることを確認する（ファイルベースルーティング）
+- [x] `git init` して最初のコミットをする
+- [x] `npm run dev` で http://localhost:3000 を開く
+- [x] `app/page.tsx` を書き換えて、画面に反映されることを確認する
+- [x] `app/about/page.tsx` を自分で作り、`/about` が表示されることを確認する（ファイルベースルーティング）
 
 **自分で答えてみる**
 1. `layout.tsx` と `page.tsx` の役割の違いは？
@@ -44,15 +44,15 @@
 3. `tsconfig.json` の `paths`（`@/*`）は何のためにある？
 
 ## Step 2：Prisma ＋ DB で一覧を表示する（非同期処理 その1）
-- [ ] 題材を決め、エンティティを1〜2個設計する（例：Book / Memo）
-- [ ] Neon でプロジェクトを作り、接続文字列を `.env` の `DATABASE_URL` に入れる
+- [x] 題材を決め、エンティティを1〜2個設計する（例：Book / Memo）
+- [x] Neon でプロジェクトを作り、接続文字列を `.env` の `DATABASE_URL` に入れる
   - `.env` が `.gitignore` に含まれているか必ず確認する
-- [ ] Prisma を導入する（`prisma` と `@prisma/client`、`npx prisma init`）
-- [ ] `schema.prisma` にモデルを書き、`npx prisma migrate dev` を実行する
-- [ ] Prisma Client のシングルトンを用意する（`lib/prisma.ts`）
+- [x] Prisma を導入する（`prisma` と `@prisma/client`、`npx prisma init`）
+- [x] `schema.prisma` にモデルを書き、`npx prisma migrate dev` を実行する
+- [x] Prisma Client のシングルトンを用意する（`lib/prisma.ts`）
   - ヒント：開発中のホットリロードで接続が増えすぎる問題を、`globalThis` で回避する
-- [ ] `async` な Server Component で `findMany` を呼び、一覧を表示する
-- [ ] `npx prisma studio` でデータを手で入れ、画面に出ることを確認する
+- [x] `async` な Server Component で `findMany` を呼び、一覧を表示する
+- [x] `npx prisma studio` でデータを手で入れ、画面に出ることを確認する
 
 **自分で答えてみる**
 1. `findMany` の戻り値の型はどこから来ている？（エディタで型をホバーしてみる）
