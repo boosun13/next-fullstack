@@ -19,20 +19,20 @@ enum BookStatus {
 }
 
 model Book {
-  id        String        @id @default(cuid())
+  id        String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title     String
   author    String
   status    BookStatus    @default(UNREAD)
   rating    Int?
   memo      String?
   createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  updatedAt DateTime      @default(now()) @updatedAt
   logs      ActivityLog[]
 }
 
 model ActivityLog {
-  id        String   @id @default(cuid())
-  bookId    String
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  bookId    String   @db.Uuid
   book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
   action    String
   createdAt DateTime @default(now())
